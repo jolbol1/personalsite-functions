@@ -22,7 +22,7 @@ namespace Jos.Function
         {
             var commandMessage = new
             Message(Encoding.ASCII.GetBytes(message));
-            await serviceClient.SendAsync(Environment.GetEnvironmentVariable("targetDevice"), commandMessage);
+            await serviceClient.SendAsync(Environment.GetEnvironmentVariable("TARGET_DEVICE"), commandMessage);
         }
 
 
@@ -40,7 +40,7 @@ namespace Jos.Function
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             message = message ?? data?.message;
 
-            serviceClient = ServiceClient.CreateFromConnectionString(Environment.GetEnvironmentVariable("connectionString"));
+            serviceClient = ServiceClient.CreateFromConnectionString(Environment.GetEnvironmentVariable("CONNECTION_STRING"));
             SendCloudToDeviceMessageAsync(message).Wait();
 
             string responseMessage = $"Sending message to JosEsp";
