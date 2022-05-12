@@ -2,6 +2,7 @@ using IoTHubTrigger = Microsoft.Azure.WebJobs.EventHubTriggerAttribute;
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
+using System;
 using Microsoft.Azure.EventHubs;
 using System.Text;
 using System.Net.Http;
@@ -21,8 +22,8 @@ namespace Jos.Function
         public ObjectId Id { get; set; }
         public string temperature { get; set; }
         public string humidity { get; set; }
+        public BsonDateTime time = new BsonDateTime(DateTime.Now);
     }
-
     public class SendTo
     {
         private static HttpClient client = new HttpClient();
